@@ -1,0 +1,86 @@
+{
+  "_format": "hh-zksolc-artifact-1",
+  "contractName": "IUnilendV2PoolData",
+  "sourceName": "contracts/position.sol",
+  "abi": [
+    {
+      "inputs": [],
+      "name": "token0",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "token1",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_nftID",
+          "type": "uint256"
+        }
+      ],
+      "name": "userBalanceOftoken0",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "_lendBalance0",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_borrowBalance0",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_nftID",
+          "type": "uint256"
+        }
+      ],
+      "name": "userBalanceOftoken1",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "_lendBalance1",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_borrowBalance1",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "linkReferences": {},
+  "deployedLinkReferences": {},
+  "factoryDeps": {}
+}

@@ -1,0 +1,83 @@
+{
+	"compiler": {
+		"version": "0.8.2+commit.661d1103"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "totalBorrow",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "availableBorrow",
+						"type": "uint256"
+					}
+				],
+				"name": "getCurrentInterestRate",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"interestrate.sol": "UnilendV2InterestRateModel"
+		},
+		"evmVersion": "istanbul",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"interestrate.sol": {
+			"keccak256": "0x3642a0d8abb678a3874261c2cc8371c80ed64cac06502ab9f2c99182a64a427e",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://d578354862cb8451441f4750ff8195cc83182cde973abd55d14a8fb7758dbf4e",
+				"dweb:/ipfs/QmVusr3uyVYWYjqR4HpWrfeLxmJfGG8dP48n7pfjDhR4z5"
+			]
+		},
+		"lib/utils/math/SafeMath.sol": {
+			"keccak256": "0x8666f020bd8fc9dc14f07e2ebc52b5f236ab4cdde7c77679b08cb2f94730043b",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://163776cbf565c722232393aa2d62cbe8a2ffb5805986abf4906c00e1e07450a6",
+				"dweb:/ipfs/QmPZoN9T3cb6o8bGhjBPZcz7im8T8DWhpr3tjLwhJJHx9N"
+			]
+		}
+	},
+	"version": 1
+}

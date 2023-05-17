@@ -1,0 +1,1267 @@
+{
+	"compiler": {
+		"version": "0.8.19+commit.7dd6d404"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "_asset",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "_positionID",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "totalBorrows",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "_recipient",
+						"type": "address"
+					}
+				],
+				"name": "Borrow",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "_newRate0",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "_newRate1",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "totalBorrows0",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "totalBorrows1",
+						"type": "uint256"
+					}
+				],
+				"name": "InterestUpdate",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "_asset",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "_positionID",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "_token_amount",
+						"type": "uint256"
+					}
+				],
+				"name": "Lend",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "_asset",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "_positionID",
+						"type": "uint256"
+					},
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "_toPositionID",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "repayAmount",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "seizeTokens",
+						"type": "uint256"
+					}
+				],
+				"name": "LiquidateBorrow",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "_positionID",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "_price",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "_last_price",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					}
+				],
+				"name": "LiquidationPriceUpdate",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "oldLB",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "newLB",
+						"type": "uint256"
+					}
+				],
+				"name": "NewLB",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "oldLTV",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "newLTV",
+						"type": "uint256"
+					}
+				],
+				"name": "NewLTV",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "oldInterestRateModel",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "newInterestRateModel",
+						"type": "address"
+					}
+				],
+				"name": "NewMarketInterestRateModel",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "oldRF",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "newRF",
+						"type": "uint256"
+					}
+				],
+				"name": "NewRF",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "_asset",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "_positionID",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "_token_amount",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					}
+				],
+				"name": "Redeem",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "_asset",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "_positionID",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "totalBorrows",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "_payer",
+						"type": "address"
+					}
+				],
+				"name": "RepayBorrow",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "HEALTH_FACTOR_LIQUIDATION_THRESHOLD",
+				"outputs": [
+					{
+						"internalType": "uint64",
+						"name": "",
+						"type": "uint64"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "accrueInterest",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_nftID",
+						"type": "uint256"
+					},
+					{
+						"internalType": "int256",
+						"name": "amount",
+						"type": "int256"
+					},
+					{
+						"internalType": "address payable",
+						"name": "_recipient",
+						"type": "address"
+					}
+				],
+				"name": "borrow",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "core",
+				"outputs": [
+					{
+						"internalType": "address payable",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getAvailableLiquidity0",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "_available",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getAvailableLiquidity1",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "_available",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_totalBorrow",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_availableBorrow",
+						"type": "uint256"
+					}
+				],
+				"name": "getInterestRate",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getLB",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getLTV",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getRF",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_token0",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_token1",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_interestRate",
+						"type": "address"
+					},
+					{
+						"internalType": "uint8",
+						"name": "_ltv",
+						"type": "uint8"
+					},
+					{
+						"internalType": "uint8",
+						"name": "_lb",
+						"type": "uint8"
+					},
+					{
+						"internalType": "uint8",
+						"name": "_rf",
+						"type": "uint8"
+					}
+				],
+				"name": "init",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "interestRateAddress",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "lastUpdated",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_nftID",
+						"type": "uint256"
+					},
+					{
+						"internalType": "int256",
+						"name": "amount",
+						"type": "int256"
+					}
+				],
+				"name": "lend",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_nftID",
+						"type": "uint256"
+					},
+					{
+						"internalType": "int256",
+						"name": "amount",
+						"type": "int256"
+					},
+					{
+						"internalType": "address",
+						"name": "_receiver",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_toNftID",
+						"type": "uint256"
+					}
+				],
+				"name": "liquidate",
+				"outputs": [
+					{
+						"internalType": "int256",
+						"name": "liquidatedAmount",
+						"type": "int256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256[]",
+						"name": "_nftIDs",
+						"type": "uint256[]"
+					},
+					{
+						"internalType": "int256[]",
+						"name": "amounts",
+						"type": "int256[]"
+					},
+					{
+						"internalType": "address",
+						"name": "_receiver",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_toNftID",
+						"type": "uint256"
+					}
+				],
+				"name": "liquidateMulti",
+				"outputs": [
+					{
+						"internalType": "int256",
+						"name": "liquidatedAmountTotal",
+						"type": "int256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "poolData",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "_totalLendShare0",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_totalBorrowShare0",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_totalBorrow0",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_totalBalance0",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_totalAvailableLiquidity0",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_totalLendShare1",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_totalBorrowShare1",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_totalBorrow1",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_totalBalance1",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_totalAvailableLiquidity1",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "positionData",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "token0lendShare",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "token1lendShare",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "token0borrowShare",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "token1borrowShare",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_receiver",
+						"type": "address"
+					},
+					{
+						"internalType": "int256",
+						"name": "_amount",
+						"type": "int256"
+					}
+				],
+				"name": "processFlashLoan",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_nftID",
+						"type": "uint256"
+					},
+					{
+						"internalType": "int256",
+						"name": "tok_amount",
+						"type": "int256"
+					},
+					{
+						"internalType": "address",
+						"name": "_receiver",
+						"type": "address"
+					}
+				],
+				"name": "redeem",
+				"outputs": [
+					{
+						"internalType": "int256",
+						"name": "_amount",
+						"type": "int256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_nftID",
+						"type": "uint256"
+					},
+					{
+						"internalType": "int256",
+						"name": "_amount",
+						"type": "int256"
+					},
+					{
+						"internalType": "address",
+						"name": "_receiver",
+						"type": "address"
+					}
+				],
+				"name": "redeemUnderlying",
+				"outputs": [
+					{
+						"internalType": "int256",
+						"name": "rtAmount",
+						"type": "int256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_nftID",
+						"type": "uint256"
+					},
+					{
+						"internalType": "int256",
+						"name": "amount",
+						"type": "int256"
+					},
+					{
+						"internalType": "address",
+						"name": "_payer",
+						"type": "address"
+					}
+				],
+				"name": "repay",
+				"outputs": [
+					{
+						"internalType": "int256",
+						"name": "_rAmount",
+						"type": "int256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_address",
+						"type": "address"
+					}
+				],
+				"name": "setInterestRateAddress",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint8",
+						"name": "_number",
+						"type": "uint8"
+					}
+				],
+				"name": "setLB",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint8",
+						"name": "_number",
+						"type": "uint8"
+					}
+				],
+				"name": "setLTV",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint8",
+						"name": "_number",
+						"type": "uint8"
+					}
+				],
+				"name": "setRF",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "token0",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "token0Data",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "totalLendShare",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "totalBorrowShare",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "totalBorrow",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "token1",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "token1Data",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "totalLendShare",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "totalBorrowShare",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "totalBorrow",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_distributorAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_token",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					}
+				],
+				"name": "transferFlashLoanProtocolFee",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_nftID",
+						"type": "uint256"
+					}
+				],
+				"name": "userBalanceOftoken0",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "_lendBalance0",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_borrowBalance0",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_nftID",
+						"type": "uint256"
+					}
+				],
+				"name": "userBalanceOftoken1",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "_lendBalance1",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_borrowBalance1",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_nftID",
+						"type": "uint256"
+					}
+				],
+				"name": "userBalanceOftokens",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "_lendBalance0",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_borrowBalance0",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_lendBalance1",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_borrowBalance1",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_nftID",
+						"type": "uint256"
+					}
+				],
+				"name": "userHealthFactor",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "_healthFactor0",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_healthFactor1",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_nftID",
+						"type": "uint256"
+					}
+				],
+				"name": "userHealthFactorLtv",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "_healthFactor0",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_healthFactor1",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_nftID",
+						"type": "uint256"
+					}
+				],
+				"name": "userSharesOftoken0",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "_lendShare0",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_borrowShare0",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_nftID",
+						"type": "uint256"
+					}
+				],
+				"name": "userSharesOftoken1",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "_lendShare1",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_borrowShare1",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_nftID",
+						"type": "uint256"
+					}
+				],
+				"name": "userSharesOftokens",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "_lendShare0",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_borrowShare0",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_lendShare1",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_borrowShare1",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"pool.sol": "UnilendV2Pool"
+		},
+		"evmVersion": "paris",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"lib/security/ReentrancyGuard.sol": {
+			"keccak256": "0x3ad0ec379a808f08bbb0b2eaa4533add9a458cc411115030842034d8c2032c2b",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://4a6ad8b70f72c7f95535ac08452129a4ccc9dd523a49d7b613938af95327debf",
+				"dweb:/ipfs/Qmc2HdxeQoi9CA1TTuB4sCAEr1Bbrj38ZLBrE8moHNbyA5"
+			]
+		},
+		"lib/token/ERC20/IERC20.sol": {
+			"keccak256": "0x027b891937d20ccf213fdb9c31531574256de774bda99d3a70ecef6e1913ed2a",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://087318b21c528119f649899f5b5580566dd8d7b0303d4904bd0e8580c3545f14",
+				"dweb:/ipfs/Qmbn5Mj7aUn8hJuQ8VrQjjEXRsXyJKykgnjR9p4C3nfLtL"
+			]
+		},
+		"lib/token/ERC20/utils/SafeERC20.sol": {
+			"keccak256": "0x02348b2e4b9f3200c7e3907c5c2661643a6d8520e9f79939fbb9b4005a54894d",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://d41d627f4ef9c6006df8c2d01227d3cf4a6c3359b5704c629d88933272eecadd",
+				"dweb:/ipfs/QmYDo7MvMsvuDxuJZ9RC9zFganS3Tm8RYzSmBP5qSmJfuY"
+			]
+		},
+		"lib/utils/Address.sol": {
+			"keccak256": "0x3336baae5cf23e94274d75336e2d412193be508504aee185e61dc7d58cd05c8a",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://39a05eec7083dfa0cc7e0cbfe6cd1bd085a340af1ede93fdff3ad047c5fb3d8e",
+				"dweb:/ipfs/QmVApz5fCUq2QC8gKTsNNdCmcedJ3ETHp68zR5N3WUKS4r"
+			]
+		},
+		"lib/utils/Counters.sol": {
+			"keccak256": "0x78450f4e3b722cce467b21e285f72ce5eaf361e9ba9dd2241a413926246773cd",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://f103065051300cd995fd4599ba91188d4071b92175b52f26110e02db091617c0",
+				"dweb:/ipfs/QmSyDz67R2HCypDE8Pacn3voVwxw9x17NM66q47YgBnGqc"
+			]
+		},
+		"lib/utils/math/SafeMath.sol": {
+			"keccak256": "0x8666f020bd8fc9dc14f07e2ebc52b5f236ab4cdde7c77679b08cb2f94730043b",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://163776cbf565c722232393aa2d62cbe8a2ffb5805986abf4906c00e1e07450a6",
+				"dweb:/ipfs/QmPZoN9T3cb6o8bGhjBPZcz7im8T8DWhpr3tjLwhJJHx9N"
+			]
+		},
+		"pool.sol": {
+			"keccak256": "0x07afd5089c011e56121171265448cece5698a0809e16f9a9f330d9fa4f6be79c",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://02cf9bb11a483f5d4afab959991499d57eee423fce8f40021da6f18cff20b4f2",
+				"dweb:/ipfs/QmeL4sBfVh5UvUbVm1uvuVmrfMbQEJEX6c7evtomcvF16S"
+			]
+		}
+	},
+	"version": 1
+}

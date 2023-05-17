@@ -1,0 +1,1267 @@
+{
+	"compiler": {
+		"version": "0.8.19+commit.7dd6d404"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_poolMasterAddress",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "_target",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "_reserve",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "int256",
+						"name": "_amount",
+						"type": "int256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "_totalFee",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "_protocolFee",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "_timestamp",
+						"type": "uint256"
+					}
+				],
+				"name": "FlashLoan",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "_address",
+						"type": "address"
+					}
+				],
+				"name": "NewDefaultInterestRateAddress",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint8",
+						"name": "_ltv",
+						"type": "uint8"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint8",
+						"name": "_lb",
+						"type": "uint8"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint8",
+						"name": "_rf",
+						"type": "uint8"
+					}
+				],
+				"name": "NewDefaultMarketConfig",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "_address",
+						"type": "address"
+					}
+				],
+				"name": "NewGovernorAddress",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "_address",
+						"type": "address"
+					}
+				],
+				"name": "NewOracleAddress",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "_address",
+						"type": "address"
+					}
+				],
+				"name": "NewPositionAddress",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "token0",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "token1",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "pool",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "PoolCreated",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_pool",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_address",
+						"type": "address"
+					}
+				],
+				"name": "balanceOfUserToken0",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "_lendBalance0",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_borrowBalance0",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_pool",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_address",
+						"type": "address"
+					}
+				],
+				"name": "balanceOfUserToken1",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "_lendBalance1",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_borrowBalance1",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_pool",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_address",
+						"type": "address"
+					}
+				],
+				"name": "balanceOfUserTokens",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "_lendBalance0",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_borrowBalance0",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_lendBalance1",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_borrowBalance1",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_pool",
+						"type": "address"
+					},
+					{
+						"internalType": "int256",
+						"name": "_amount",
+						"type": "int256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_collateral_amount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address payable",
+						"name": "_recipient",
+						"type": "address"
+					}
+				],
+				"name": "borrow",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_tokenA",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_tokenB",
+						"type": "address"
+					}
+				],
+				"name": "createPool",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "defaultInterestRate",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "distributorAddress",
+				"outputs": [
+					{
+						"internalType": "address payable",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_receiver",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_pool",
+						"type": "address"
+					},
+					{
+						"internalType": "int256",
+						"name": "_amount",
+						"type": "int256"
+					},
+					{
+						"internalType": "bytes",
+						"name": "_params",
+						"type": "bytes"
+					}
+				],
+				"name": "flashLoan",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getFlashLoanFeesInBips",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_token0",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_token1",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					}
+				],
+				"name": "getOraclePrice",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "getPool",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_pool",
+						"type": "address"
+					}
+				],
+				"name": "getPoolAvailableLiquidity",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "_token0Liquidity",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_token1Liquidity",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_token0",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_token1",
+						"type": "address"
+					}
+				],
+				"name": "getPoolByTokens",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_pool",
+						"type": "address"
+					}
+				],
+				"name": "getPoolLTV",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "_ltv",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_pool",
+						"type": "address"
+					}
+				],
+				"name": "getPoolTokens",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_pool",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_address",
+						"type": "address"
+					}
+				],
+				"name": "getUserHealthFactor",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "_healthFactor0",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_healthFactor1",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "governor",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_pool",
+						"type": "address"
+					},
+					{
+						"internalType": "int256",
+						"name": "_amount",
+						"type": "int256"
+					}
+				],
+				"name": "lend",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "mintedTokens",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_pool",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_for",
+						"type": "address"
+					},
+					{
+						"internalType": "int256",
+						"name": "_amount",
+						"type": "int256"
+					},
+					{
+						"internalType": "address",
+						"name": "_receiver",
+						"type": "address"
+					},
+					{
+						"internalType": "bool",
+						"name": "uPosition",
+						"type": "bool"
+					}
+				],
+				"name": "liquidate",
+				"outputs": [
+					{
+						"internalType": "int256",
+						"name": "payAmount",
+						"type": "int256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_pool",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "_nftIDs",
+						"type": "uint256[]"
+					},
+					{
+						"internalType": "int256[]",
+						"name": "_amounts",
+						"type": "int256[]"
+					},
+					{
+						"internalType": "address",
+						"name": "_receiver",
+						"type": "address"
+					},
+					{
+						"internalType": "bool",
+						"name": "uPosition",
+						"type": "bool"
+					}
+				],
+				"name": "liquidateMulti",
+				"outputs": [
+					{
+						"internalType": "int256",
+						"name": "payAmount",
+						"type": "int256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "oracleAddress",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "poolLength",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "poolMasterAddress",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "positionsAddress",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_pool",
+						"type": "address"
+					},
+					{
+						"internalType": "int256",
+						"name": "_token_amount",
+						"type": "int256"
+					},
+					{
+						"internalType": "address",
+						"name": "_receiver",
+						"type": "address"
+					}
+				],
+				"name": "redeem",
+				"outputs": [
+					{
+						"internalType": "int256",
+						"name": "redeemTokens",
+						"type": "int256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_pool",
+						"type": "address"
+					},
+					{
+						"internalType": "int256",
+						"name": "_amount",
+						"type": "int256"
+					},
+					{
+						"internalType": "address",
+						"name": "_receiver",
+						"type": "address"
+					}
+				],
+				"name": "redeemUnderlying",
+				"outputs": [
+					{
+						"internalType": "int256",
+						"name": "_token_amount",
+						"type": "int256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_pool",
+						"type": "address"
+					},
+					{
+						"internalType": "int256",
+						"name": "_amount",
+						"type": "int256"
+					},
+					{
+						"internalType": "address",
+						"name": "_for",
+						"type": "address"
+					}
+				],
+				"name": "repay",
+				"outputs": [
+					{
+						"internalType": "int256",
+						"name": "_retAmount",
+						"type": "int256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_address",
+						"type": "address"
+					}
+				],
+				"name": "setDefaultInterestRateAddress",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint8",
+						"name": "_ltv",
+						"type": "uint8"
+					},
+					{
+						"internalType": "uint8",
+						"name": "_lb",
+						"type": "uint8"
+					},
+					{
+						"internalType": "uint8",
+						"name": "_rf",
+						"type": "uint8"
+					}
+				],
+				"name": "setDefaultMarketConfig",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address payable",
+						"name": "_address",
+						"type": "address"
+					}
+				],
+				"name": "setDistributorAddress",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_newFeeTotal",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_newFeeProtocol",
+						"type": "uint256"
+					}
+				],
+				"name": "setFlashLoanFeesInBips",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_address",
+						"type": "address"
+					}
+				],
+				"name": "setGovernor",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_address",
+						"type": "address"
+					}
+				],
+				"name": "setOracleAddress",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_pool",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_address",
+						"type": "address"
+					}
+				],
+				"name": "setPoolInterestRateAddress",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_pool",
+						"type": "address"
+					},
+					{
+						"internalType": "uint8",
+						"name": "_number",
+						"type": "uint8"
+					}
+				],
+				"name": "setPoolLB",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_pool",
+						"type": "address"
+					},
+					{
+						"internalType": "uint8",
+						"name": "_number",
+						"type": "uint8"
+					}
+				],
+				"name": "setPoolLTV",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_pool",
+						"type": "address"
+					},
+					{
+						"internalType": "uint8",
+						"name": "_number",
+						"type": "uint8"
+					}
+				],
+				"name": "setPoolRF",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_address",
+						"type": "address"
+					}
+				],
+				"name": "setPositionAddress",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_pool",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_address",
+						"type": "address"
+					}
+				],
+				"name": "shareOfUserToken0",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "_lendShare0",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_borrowShare0",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_pool",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_address",
+						"type": "address"
+					}
+				],
+				"name": "shareOfUserToken1",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "_lendShare1",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_borrowShare1",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_pool",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_address",
+						"type": "address"
+					}
+				],
+				"name": "shareOfUserTokens",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "_lendShare0",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_borrowShare0",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_lendShare1",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_borrowShare1",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"stateMutability": "payable",
+				"type": "receive"
+			}
+		],
+		"devdoc": {
+			"events": {
+				"FlashLoan(address,address,int256,uint256,uint256,uint256)": {
+					"details": "emitted when a flashloan is executed",
+					"params": {
+						"_amount": "the amount requested",
+						"_protocolFee": "the part of the fee for the protocol",
+						"_reserve": "the address of the reserve",
+						"_target": "the address of the flashLoanReceiver",
+						"_timestamp": "the timestamp of the action*",
+						"_totalFee": "the total fee on the amount"
+					}
+				}
+			},
+			"kind": "dev",
+			"methods": {
+				"createPool(address,address)": {
+					"details": "Creates pool for assets. This function is executed by the overlying uToken contract.",
+					"params": {
+						"_tokenA": "the address of the token0",
+						"_tokenB": "the address of the token1*"
+					}
+				},
+				"flashLoan(address,address,int256,bytes)": {
+					"details": "allows smartcontracts to access the liquidity of the pool within one transaction, as long as the amount taken plus a fee is returned. NOTE There are security concerns for developers of flashloan receiver contracts that must be kept into consideration.",
+					"params": {
+						"_amount": "the amount requested for this flashloan*",
+						"_pool": "the address of the principal reserve pool",
+						"_receiver": "The address of the contract receiving the funds. The receiver should implement the IFlashLoanReceiver interface."
+					}
+				},
+				"getFlashLoanFeesInBips()": {
+					"details": "returns the fee applied to a flashloan and the portion to redirect to the protocol, in basis points.*"
+				},
+				"lend(address,int256)": {
+					"details": "deposits The underlying asset into the reserve.",
+					"params": {
+						"_amount": "the amount to be deposited*",
+						"_pool": "the address of the pool"
+					}
+				},
+				"redeem(address,int256,address)": {
+					"details": "Redeems the uTokens for underlying assets.",
+					"params": {
+						"_pool": "the address of the pool",
+						"_token_amount": "the amount to be redeemed*"
+					}
+				},
+				"redeemUnderlying(address,int256,address)": {
+					"details": "Redeems the underlying amount of assets.",
+					"params": {
+						"_amount": "the amount to be redeemed*",
+						"_pool": "the address of the pool"
+					}
+				},
+				"setDistributorAddress(address)": {
+					"details": "set new distributor address.",
+					"params": {
+						"_address": "new address*"
+					}
+				},
+				"setFlashLoanFeesInBips(uint256,uint256)": {
+					"details": "set new flash loan fees.",
+					"params": {
+						"_newFeeProtocol": "protocol fee*",
+						"_newFeeTotal": "total fee"
+					}
+				},
+				"setGovernor(address)": {
+					"details": "set new admin for contract.",
+					"params": {
+						"_address": "the address of new governor*"
+					}
+				},
+				"setOracleAddress(address)": {
+					"details": "set new oracle address.",
+					"params": {
+						"_address": "new address*"
+					}
+				}
+			},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"core.sol": "UnilendV2Core"
+		},
+		"evmVersion": "paris",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"core.sol": {
+			"keccak256": "0xbd7120ae900fad7b18ad9ab5aa1d8cc75e90cbcd577ba9c0396ff42b38f44d59",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://b41023c911e7514cfb39b35d4f59a79d4d80493f63ecf1b150a4dc4d8c445658",
+				"dweb:/ipfs/QmdohmRGvXbjUapKm8Ld9KicqvgaUwsb6UDquQMrdLRqch"
+			]
+		},
+		"lib/security/ReentrancyGuard.sol": {
+			"keccak256": "0x3ad0ec379a808f08bbb0b2eaa4533add9a458cc411115030842034d8c2032c2b",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://4a6ad8b70f72c7f95535ac08452129a4ccc9dd523a49d7b613938af95327debf",
+				"dweb:/ipfs/Qmc2HdxeQoi9CA1TTuB4sCAEr1Bbrj38ZLBrE8moHNbyA5"
+			]
+		},
+		"lib/token/ERC20/IERC20.sol": {
+			"keccak256": "0x027b891937d20ccf213fdb9c31531574256de774bda99d3a70ecef6e1913ed2a",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://087318b21c528119f649899f5b5580566dd8d7b0303d4904bd0e8580c3545f14",
+				"dweb:/ipfs/Qmbn5Mj7aUn8hJuQ8VrQjjEXRsXyJKykgnjR9p4C3nfLtL"
+			]
+		},
+		"lib/token/ERC20/extensions/IERC20Metadata.sol": {
+			"keccak256": "0x83fe24f5c04a56091e50f4a345ff504c8bff658a76d4c43b16878c8f940c53b2",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://d4c3df1a7ca104b633a7d81c6c6f5192367d150cd5a32cba81f7f27012729013",
+				"dweb:/ipfs/QmSim72e3ZVsfgZt8UceCvbiSuMRHR6WDsiamqNzZahGSY"
+			]
+		},
+		"lib/token/ERC20/utils/SafeERC20.sol": {
+			"keccak256": "0x02348b2e4b9f3200c7e3907c5c2661643a6d8520e9f79939fbb9b4005a54894d",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://d41d627f4ef9c6006df8c2d01227d3cf4a6c3359b5704c629d88933272eecadd",
+				"dweb:/ipfs/QmYDo7MvMsvuDxuJZ9RC9zFganS3Tm8RYzSmBP5qSmJfuY"
+			]
+		},
+		"lib/utils/Address.sol": {
+			"keccak256": "0x3336baae5cf23e94274d75336e2d412193be508504aee185e61dc7d58cd05c8a",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://39a05eec7083dfa0cc7e0cbfe6cd1bd085a340af1ede93fdff3ad047c5fb3d8e",
+				"dweb:/ipfs/QmVApz5fCUq2QC8gKTsNNdCmcedJ3ETHp68zR5N3WUKS4r"
+			]
+		},
+		"lib/utils/math/SafeMath.sol": {
+			"keccak256": "0x8666f020bd8fc9dc14f07e2ebc52b5f236ab4cdde7c77679b08cb2f94730043b",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://163776cbf565c722232393aa2d62cbe8a2ffb5805986abf4906c00e1e07450a6",
+				"dweb:/ipfs/QmPZoN9T3cb6o8bGhjBPZcz7im8T8DWhpr3tjLwhJJHx9N"
+			]
+		}
+	},
+	"version": 1
+}

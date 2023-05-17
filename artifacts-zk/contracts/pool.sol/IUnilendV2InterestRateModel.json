@@ -1,0 +1,36 @@
+{
+  "_format": "hh-zksolc-artifact-1",
+  "contractName": "IUnilendV2InterestRateModel",
+  "sourceName": "contracts/pool.sol",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "totalBorrow",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "availableBorrow",
+          "type": "uint256"
+        }
+      ],
+      "name": "getCurrentInterestRate",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "linkReferences": {},
+  "deployedLinkReferences": {},
+  "factoryDeps": {}
+}
